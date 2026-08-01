@@ -1,0 +1,68 @@
+name: Populate PR overview
+
+on:
+  pull_request:
+    types: [opened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  populate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Check and populate overview
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          REPO: ${{ github.repository }}
+        run: |
+          body=$(gh pr view "$PR_NUMBER" --repo "$REPO" --json body --jq '.body' | tr -d '\r')
+
+          # Exit if no ## Overview section (no template applied)
+          grep -q '^## Overview$' <<< "$body" || exit 0
+
+          # Extract section content, strip HTML comments and whitespace
+          overview_content=$(awk '/^## Overview$/{f=1;next} f && /^## /{exit} f{print}' <<< "$body")
+          stripped=$(sed 's/<!--[^>]*-->//g' <<< "$overview_content" | tr -d '[:space:]')
+          [[ -n "$stripped" ]] && exit 0
+
+          # Generate overview and write to temp file (awk -v can't pass newlines)
+          tmpfile=$(mktemp)
+          trap 'rm -f "$tmpfile"' EXIT
+          pnpm tsx scripts/generate-pr-description/index.ts "$BASE_SHA" "$HEAD_SHA" "$REPO" > "$tmpfile"
+
+          # Replace ## Overview section content; drop any text before first heading
+          new_body=$(awk -v ovfile="$tmpfile" '
+            /^## Overview$/ {
+              started=1
+              print
+              print ""
+              while ((getline line < ovfile) > 0) print line
+              print ""
+              skip=1; next
+            }
+            skip && /^## / { skip=0 }
+            skip { next }
+            started { print }
+          ' <<< "$body")
+
+          gh pr edit "$PR_NUMBER" --repo "$REPO" --body "$new_body"

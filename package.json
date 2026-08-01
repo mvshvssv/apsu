@@ -1,0 +1,24 @@
+{
+  "name": "apsu",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "validate-skills": "tsx scripts/validate-skills/index.ts"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^21.0.2",
+    "@types/node": "^20.0.0",
+    "commitlint": "^21.0.2",
+    "husky": "^9.1.7",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0"
+  }
+}
