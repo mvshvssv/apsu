@@ -5,7 +5,7 @@ A Node/TypeScript project skeleton wired for working with Claude Code: a set of 
 ## Setup
 
 ```bash
-pnpm install   # Node ≥ 22, pnpm
+pnpm install   # Node ≥ 22.16 (or ≥ 24), pnpm
 ```
 
 ## AI workflows
@@ -14,45 +14,45 @@ Skills live in `.agents/skills/`, symlinked from `.claude/skills/`. Claude fires
 
 ### Planning & Design
 
-| Skill | Trigger |
-|---|---|
-| `grilling` | "stress-test this", "poke holes in this plan" |
-| `domain-modeling` | "what should we call this", "write an ADR" |
-| `codebase-design` | "what's the right interface here" |
+| Skill                           | Trigger                                                           |
+| ------------------------------- | ----------------------------------------------------------------- |
+| `grilling`                      | "stress-test this", "poke holes in this plan"                     |
+| `domain-modeling`               | "what should we call this", "write an ADR"                        |
+| `codebase-design`               | "what's the right interface here"                                 |
 | `improve-codebase-architecture` | `/improve-codebase-architecture` — scan for refactors worth doing |
-| `to-spec` | `/to-spec` — this conversation into a spec issue |
-| `to-tickets` | `/to-tickets` — a plan into dependency-ordered tickets |
-| `triage` | `/triage` — walk the issue backlog |
+| `to-spec`                       | `/to-spec` — this conversation into a spec issue                  |
+| `to-tickets`                    | `/to-tickets` — a plan into dependency-ordered tickets            |
+| `triage`                        | `/triage` — walk the issue backlog                                |
 
 ### Building
 
-| Skill | Trigger |
-|---|---|
-| `tdd` | "test-first", "write the test first" |
-| `prototype` | "spike it", "does this state model feel right" |
-| `diagnosing-bugs` | "debug this", or report something broken |
-| `resolving-merge-conflicts` | "finish the rebase" |
-| `implement` | `/implement <n>` — build a GitHub issue, stops before committing |
+| Skill                       | Trigger                                                          |
+| --------------------------- | ---------------------------------------------------------------- |
+| `tdd`                       | "test-first", "write the test first"                             |
+| `prototype`                 | "spike it", "does this state model feel right"                   |
+| `diagnosing-bugs`           | "debug this", or report something broken                         |
+| `resolving-merge-conflicts` | "finish the rebase"                                              |
+| `implement`                 | `/implement <n>` — build a GitHub issue, stops before committing |
 
 ### Review & Ship
 
-| Skill | Trigger |
-|---|---|
-| `code-review` | "review my changes since main" |
-| `commit-changes` | "commit this" |
-| `open-pr` | "open a PR" |
+| Skill            | Trigger                        |
+| ---------------- | ------------------------------ |
+| `code-review`    | "review my changes since main" |
+| `commit-changes` | "commit this"                  |
+| `open-pr`        | "open a PR"                    |
 
 ### Research & Continuity
 
-| Skill | Trigger |
-|---|---|
-| `research` | "look up how X works" |
-| `handoff` | `/handoff` — compact the session for the next agent |
+| Skill      | Trigger                                             |
+| ---------- | --------------------------------------------------- |
+| `research` | "look up how X works"                               |
+| `handoff`  | `/handoff` — compact the session for the next agent |
 
 ### Authoring Skills
 
-| Skill | Trigger |
-|---|---|
+| Skill                  | Trigger                                             |
+| ---------------------- | --------------------------------------------------- |
 | `writing-great-skills` | `/writing-great-skills` — adding or editing a skill |
 
 ## Skill sources
@@ -74,19 +74,25 @@ Changes made here:
 
 ## Code Validation
 
-`vitest` for tests, `tsc --noEmit` for types (strict, NodeNext), `tsx` to run scripts.
+`eslint` for lint, `prettier` for format, `vitest` for tests, `tsc --noEmit` for types (strict + `noUncheckedIndexedAccess`, bundler resolution), `tsx` to run scripts.
 
 ```bash
+pnpm lint             # eslint . --max-warnings 0
+pnpm lint:fix
+pnpm format           # ts, js, json, yml, md
+pnpm format:check
 pnpm typecheck
 pnpm test
 pnpm validate-skills   # every skill in the CLAUDE.md table exists and is symlinked
 ```
 
-Commits go through `husky` + `commitlint` (Conventional Commits, plus local rules: issue refs in the footer only, body paragraphs capitalized and terminated).
+Lint and format config is preset-driven — see `eslint.config.js`, `.prettierrc.json` and `.prettierignore`.
+
+Commits go through `husky` + `commitlint` (Conventional Commits, plus local rules: issue refs in the footer only, body paragraphs capitalized and terminated). `.husky/pre-commit` runs `pnpm lint && pnpm format:check`.
 
 Two workflows in `.github/workflows/`:
 
-- **`ci.yml`** — lints commit messages since `origin/main`, then typecheck, test, validate-skills.
+- **`ci.yml`** — lints commit messages since `origin/main`, then lint, format:check, typecheck, test, validate-skills.
 - **`pr-description.yml`** — fills a new PR's empty `## Overview` from the branch's commits, grouped by Conventional Commit type. `/open-pr` runs the same script locally, so the job exits early when you use it.
 
 Issue and PR templates live in `.github/`.

@@ -4,21 +4,31 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=22"
+    "node": ">=22.16.0 <23 || >=24"
   },
   "scripts": {
     "prepare": "husky",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "validate-skills": "tsx scripts/validate-skills/index.ts"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^21.0.2",
     "@types/node": "^20.0.0",
+    "@vitest/eslint-plugin": "^1.6.25",
     "commitlint": "^21.0.2",
+    "eslint": "^10.8.0",
+    "eslint-config-airbnb-extended": "^3.1.1",
+    "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
+    "prettier": "^3.9.6",
     "tsx": "^4.0.0",
     "typescript": "^5.0.0",
+    "typescript-eslint": "^8.65.0",
     "vitest": "^2.0.0"
   }
 }
