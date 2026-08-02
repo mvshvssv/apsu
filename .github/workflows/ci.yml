@@ -29,6 +29,12 @@ jobs:
       - name: Lint commit messages
         run: npx commitlint --from origin/main
 
+      - name: Lint
+        run: pnpm lint
+
+      - name: Check formatting
+        run: pnpm format:check
+
       - name: Type check
         run: pnpm typecheck
 

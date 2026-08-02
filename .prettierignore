@@ -1,0 +1,10 @@
+node_modules/
+dist/
+pnpm-lock.yaml
+.husky/_/
+
+# Vendored from mattpocock/skills — kept byte-identical to upstream so the
+# diff workflow in README.md ("diff a skill against its skills-lock.json path")
+# keeps working.
+.agents/skills/
+.claude/skills/

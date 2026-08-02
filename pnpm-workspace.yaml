@@ -1,2 +1,17 @@
+# eslint-config-airbnb-extended hard-depends on the React and Next plugins even
+# for its base config. This repo is TypeScript + Vitest only — framework
+# boilerplates live in sibling repos — so those four resolve to an empty stub.
+# Nothing in configs.base or configs.node touches them at lint time.
+# Note: pnpm-specific. An npm or yarn install pulls the real packages.
+overrides:
+  eslint-plugin-react: 'file:./.eslint-stubs/empty'
+  eslint-plugin-react-hooks: 'file:./.eslint-stubs/empty'
+  eslint-plugin-jsx-a11y: 'file:./.eslint-stubs/empty'
+  '@next/eslint-plugin-next': 'file:./.eslint-stubs/empty'
+
 allowBuilds:
   esbuild: true
+  unrs-resolver: true
+
+minimumReleaseAgeExclude:
+  - '@vitest/eslint-plugin@1.6.25'

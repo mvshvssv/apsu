@@ -22,33 +22,33 @@ This table lists the model-invoked skills only. User-invoked skills are not list
 
 ### Planning & Design
 
-| Skill | Trigger |
-|---|---|
-| `grilling` | "grill me", "stress-test this", "poke holes in this", "interview me about this plan" |
+| Skill             | Trigger                                                                                        |
+| ----------------- | ---------------------------------------------------------------------------------------------- |
+| `grilling`        | "grill me", "stress-test this", "poke holes in this", "interview me about this plan"           |
 | `domain-modeling` | "what should we call this", "pin down the terminology", "record this decision", "write an ADR" |
-| `codebase-design` | "design this module", "what's the right interface here", "is this a deep module" |
+| `codebase-design` | "design this module", "what's the right interface here", "is this a deep module"               |
 
 ### Building
 
-| Skill | Trigger |
-|---|---|
-| `tdd` | "test-first", "red-green", "write the test first", "add integration tests" |
-| `prototype` | "prototype this", "spike it", "does this state model feel right", "try a few UI variations" |
-| `diagnosing-bugs` | "diagnose this", "debug this", something broken / throwing / failing / slow |
-| `resolving-merge-conflicts` | "resolve the conflicts", "fix this merge", "finish the rebase" |
+| Skill                       | Trigger                                                                                     |
+| --------------------------- | ------------------------------------------------------------------------------------------- |
+| `tdd`                       | "test-first", "red-green", "write the test first", "add integration tests"                  |
+| `prototype`                 | "prototype this", "spike it", "does this state model feel right", "try a few UI variations" |
+| `diagnosing-bugs`           | "diagnose this", "debug this", something broken / throwing / failing / slow                 |
+| `resolving-merge-conflicts` | "resolve the conflicts", "fix this merge", "finish the rebase"                              |
 
 ### Review & Ship
 
-| Skill | Trigger |
-|---|---|
-| `code-review` | "review this branch", "review since main", "review my changes", `/code-review` |
+| Skill            | Trigger                                                                                             |
+| ---------------- | --------------------------------------------------------------------------------------------------- |
+| `code-review`    | "review this branch", "review since main", "review my changes", `/code-review`                      |
 | `commit-changes` | "commit", "commit this", "commit my changes", "make a commit", "create a commit", `/commit-changes` |
-| `open-pr` | "open a PR", "open a pull request", "create a PR", "push and open PR", `/open-pr` |
+| `open-pr`        | "open a PR", "open a pull request", "create a PR", "push and open PR", `/open-pr`                   |
 
 ### Research
 
-| Skill | Trigger |
-|---|---|
+| Skill      | Trigger                                                                          |
+| ---------- | -------------------------------------------------------------------------------- |
 | `research` | "research this", "look up how X works", "gather the API facts", "check the docs" |
 
 ### Agent Skills (Issue Tracking & Triage)
