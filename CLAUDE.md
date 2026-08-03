@@ -58,3 +58,5 @@ This table lists the model-invoked skills only. User-invoked skills are not list
 **Triage labels** — Default label vocabulary: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
 
 **Domain docs** — Single-context: `CONTEXT.md` at repo root, `docs/adr/` for past decisions. See `docs/agents/domain.md`.
+
+**Code style** — Conventions tooling can't enforce, across all code: layout, comments, escape hatches. See `docs/agents/code-style.md`.

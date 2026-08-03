@@ -86,7 +86,7 @@ pnpm test
 pnpm validate-skills   # every skill in the CLAUDE.md table exists and is symlinked
 ```
 
-Lint and format config is preset-driven — see `eslint.config.js`, `.prettierrc.json` and `.prettierignore`.
+Lint and format config is preset-driven — see `eslint.config.js`, `.prettierrc.json` and `.prettierignore`. The conventions those presets can't enforce — file layout, comments, escape hatches — live in [`docs/agents/code-style.md`](docs/agents/code-style.md).
 
 Commits go through `husky` + `commitlint` (Conventional Commits, plus local rules: issue refs in the footer only, body paragraphs capitalized and terminated). `.husky/pre-commit` runs `pnpm lint && pnpm format:check`.
 
@@ -103,5 +103,6 @@ Fork-friendly by design. Nothing here assumes a domain.
 
 - **Project docs** — `CLAUDE.md` holds the skill table and house style; `CONTEXT.md` (glossary) and `docs/adr/` get created on demand by `/domain-modeling`.
 - **Agent config** — `docs/agents/` names the issue tracker, triage labels, and where domain docs live. Point these at your own setup.
+- **Code style** — `docs/agents/code-style.md` seeds a few rules from this skeleton's own conventions. Replace them with yours; the "Adding a rule" gate keeps new ones from sprawling.
 - **New skills** — add under `.agents/skills/`, symlink into `.claude/skills/`, add a table row in `CLAUDE.md` if Claude should invoke it. `pnpm validate-skills` enforces the wiring.
 - **Upstream updates** — diff a skill against its `skills-lock.json` path, reapply the local changes above.
