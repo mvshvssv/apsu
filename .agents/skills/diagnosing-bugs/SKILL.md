@@ -107,6 +107,8 @@ Tool preference:
 
 ## Phase 5 — Fix + regression test
 
+Read `docs/agents/code-style.md` before writing code.
+
 Invoke `/ponytail` before writing any fix code — stop at the first rung that holds.
 
 Write the regression test **before the fix** — but only if there is a **correct seam** for it.

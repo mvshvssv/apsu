@@ -31,6 +31,8 @@ Ask: "What's the public interface, and which seams should we test?"
 
 ## Rules of the loop
 
+Read `docs/agents/code-style.md` before writing code.
+
 - **Red before green.** Write the failing test first, then only enough code to pass it. Don't anticipate future tests or add speculative features. Invoke `/ponytail` before writing any implementation code — stop at the first rung that holds.
 - **One slice at a time.** One seam, one test, one minimal implementation per cycle.
 - **Refactoring is not part of the loop.** It belongs to the review stage (see the `code-review` skill), not the red → green implementation cycle.

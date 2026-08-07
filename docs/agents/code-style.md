@@ -1,8 +1,6 @@
 # Code Style
 
-This repo code-style rule: mechanical convention — how code shaped, formatted, laid out, commented — tooling cannot enforce.
-
-Style rule only. Test on rule kind, not file kind: rule that constrain how code written — shape, name, layout, comment — go here. Rule that need know what project _does_ — what concept mean, what term use, what decision made — go `CONTEXT.md` or ADR via `domain-modeling` skill, never this doc.
+This repo local style rule: mechanical convention tooling cannot enforce.
 
 ## Tooling owns style
 
@@ -23,21 +21,7 @@ Fix code, not linter: silence rule to make `pnpm lint` green not fix. See **Esca
 
 ## Prototypes
 
-Tooling still apply to spike. Judgment rule — Layout, Comments, Escape hatches — no.
-
-## Layout
-
-One directory per script, named for script. `index.ts` = I/O composition root. Pure logic in `<name>.utils.ts`. Test colocated `<name>.utils.test.ts` — cover `.utils`, not `index.ts`.
-
-```
-scripts/
-└── validate-skills/
-    ├── index.ts                      # reads files, prints, throws
-    ├── validate-skills.utils.ts      # pure functions
-    └── validate-skills.utils.test.ts
-```
-
-Seam between them = purity: utils take injected predicate, `index.ts` resolve filesystem answer up front, hand in. See `codebase-design` skill for why seam sit there.
+Tooling still apply to spike. Judgment rule — no.
 
 ## Comments
 
@@ -53,13 +37,14 @@ const SKILL_ROW = /\|[ \t]*`([a-z-]+)`[ \t]*\|/g;
 
 No `eslint-disable` or `@ts-expect-error` without comment justify. Codebase now hold zero of either.
 
-## Adding a rule
+## Scripts
 
-Run four test in order. Stop at first that answer.
+One directory per script, named for script. `index.ts` = I/O composition root. Pure logic in `<name>.utils.ts`. Test colocated `<name>.utils.test.ts` — cover `.utils`, not `index.ts`.
 
-1. **Is it about what the project _does_?** → Domain. Use `domain-modeling`; no belong here.
-2. **Can eslint encode it?** → Encode in `eslint.config.js` instead. Rule tooling enforce need no prose.
-3. **Does a skill already teach it?** → Cite skill. No restate.
-4. **Still needed?** → One sentence. Add why-clause or example only where rule ambiguous without.
-
-Rule section use fixed vocabulary, so rule land predictable: **Layout**, **Naming**, **Comments**, **Types**, **Errors**, **Tests**, **Escape hatches**. Only ones with real rule exist as heading — no add empty one.
+```
+scripts/
+└── validate-skills/
+    ├── index.ts                      # reads files, prints, throws
+    ├── validate-skills.utils.ts      # pure functions
+    └── validate-skills.utils.test.ts
+```

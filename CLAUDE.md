@@ -22,11 +22,12 @@ This table lists the model-invoked skills only. User-invoked skills are not list
 
 ### Planning & Design
 
-| Skill             | Trigger                                                                                        |
-| ----------------- | ---------------------------------------------------------------------------------------------- |
-| `grilling`        | "grill me", "stress-test this", "poke holes in this", "interview me about this plan"           |
-| `domain-modeling` | "what should we call this", "pin down the terminology", "record this decision", "write an ADR" |
-| `codebase-design` | "design this module", "what's the right interface here", "is this a deep module"               |
+| Skill                 | Trigger                                                                                        |
+| --------------------- | ---------------------------------------------------------------------------------------------- |
+| `grilling`            | "grill me", "stress-test this", "poke holes in this", "interview me about this plan"           |
+| `domain-modeling`     | "what should we call this", "pin down the terminology", "record this decision", "write an ADR" |
+| `codebase-design`     | "design this module", "what's the right interface here", "is this a deep module"               |
+| `codifying-standards` | "make that a rule", "we should always do X", "that's the third time we've fixed this"          |
 
 ### Building
 
@@ -59,4 +60,4 @@ This table lists the model-invoked skills only. User-invoked skills are not list
 
 **Domain docs** — Single-context: `CONTEXT.md` at repo root, `docs/adr/` for past decisions. See `docs/agents/domain.md`.
 
-**Code style** — Conventions tooling can't enforce, across all code: layout, comments, escape hatches. See `docs/agents/code-style.md`.
+**Code style** — Conventions tooling can't enforce, across all code. See `docs/agents/code-style.md`.

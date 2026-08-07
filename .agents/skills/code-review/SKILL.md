@@ -34,7 +34,7 @@ Look for the originating spec, in this order:
 
 ### 3. Identify the standards sources
 
-Anything in the repo that documents how code should be written, such as `CODING_STANDARDS.md` or `CONTRIBUTING.md`.
+Anything in the repo that documents how code should be written, such as `docs/agents/code-style.md`, `eslint.config.js`, `.prettierrc.json`, or `tsconfig.json`.
 
 On top of whatever the repo documents, the Standards axis always carries the **smell baseline** below — a fixed set of Fowler code smells (_Refactoring_, ch.3) that applies even when a repo documents nothing. Two rules bind it:
 
@@ -84,6 +84,8 @@ If the spec is missing, skip the Spec sub-agent and note this in the final repor
 Present the three reports under `## Standards`, `## Spec`, and `## Overengineering` headings, verbatim or lightly cleaned. Do **not** merge or rerank findings — the three axes are deliberately separate (see _Why three axes_).
 
 End with a one-line summary: total findings per axis, and the worst issue _within each axis_ (if any). Don't pick a single winner across axes — that's the reranking the separation exists to prevent.
+
+A Standards finding that recurs across hunks is a candidate for `codifying-standards` — name it in the summary.
 
 ## Why three axes
 
