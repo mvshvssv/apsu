@@ -2,10 +2,10 @@
 name: commit-changes
 description: >
   Create a git commit in the current working tree. Reads commitlint rules,
-  generates a caveman-compressed Conventional Commits message, validates it,
-  then commits. Use when the user says "commit", "commit this", "commit my
-  changes", "make a commit", "create a commit", or "/commit-changes". Do not
-  trigger for read-only queries about commit history.
+  drafts a terse Conventional Commits message, validates it, then commits.
+  Use when the user says "commit", "commit this", "commit my changes", "make
+  a commit", "create a commit", or "/commit-changes". Do not trigger for
+  read-only queries about commit history.
 ---
 
 ## Steps
@@ -39,7 +39,12 @@ Completion criterion: custom rules understood; if the file is absent, skip this 
 
 ### 4. Generate commit message
 
-Invoke `/caveman-commit` with the staged diff (`git diff --cached`) and the rules from step 3 as constraints. No `Co-Authored-By` trailer.
+Draft a Conventional Commits message from the staged diff (`git diff --cached`), satisfying the rules from step 3. No `Co-Authored-By` trailer.
+
+Keep it caveman-terse:
+- Subject: imperative mood ("add", "fix", not "added", "adds"), ≤50 chars when possible, hard cap 72, no trailing period.
+- Body: only if the subject isn't self-explanatory; wrap at 72 chars.
+- Never write "this commit does X", "I", "we", "now", "currently", any AI-attribution line, emoji, or the scope's own name restated in the subject.
 
 If `ISSUE` is set and the generated message has no `Closes #N` / `Fixes #N` / `Resolves #N` footer line, append `Closes #<ISSUE>` as the last footer line (separated from the rest by a blank line if no footer exists yet). Footer lines must not end with a period.
 

@@ -43,6 +43,8 @@ Put the row in the section matching _what the user is doing_; add a section only
 
 Trigger cells hold what the _user_ says, quoted, plus the slash form — the same triggers the **description** carries.
 
+A skill that authors code also carries the code-style pointer — the one-sentence link to the repo's code-style doc, copied verbatim from a skill that already has it, in the step where the skill first writes code.
+
 ## Information hierarchy
 
 A skill is built from two content types — **steps** and **reference** — that mix freely: a skill can be all steps, all reference, or both. The core decision is which to use and where each sits on the **information hierarchy**, a ladder ranked by how immediately the agent needs the material:

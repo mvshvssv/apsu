@@ -43,6 +43,8 @@ git branch --list "*<number>-*" --all
 
 ## Step 4 — Implement
 
+Read `docs/agents/code-style.md` before writing code.
+
 Invoke `/ponytail` before writing any code — stop at the first rung that holds.
 
 Use `/tdd` where behaviors have clear, pre-agreed seams. Otherwise implement directly with ponytail principles.
